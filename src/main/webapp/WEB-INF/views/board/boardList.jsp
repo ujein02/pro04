@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*, java.lang.*" %>
 <%@ page import="java.text.*, java.net.InetAddress" %>
-<c:set var="path1" value="${pageContext.request.contextPath }" />
+<c:set var="path2" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,17 +33,6 @@
 		      			<th width="100">Visited</th>
 		      		</tr>
 		      	</thead>
-		      	<c:forEach items="${boardList }" var="board" varStatus="status">
-		      		<tr>
-		      			<td>${status.count }</td>
-		      			<td><a href="/board/detail.do?seq=${board.seq }">${board.title }</a></td>
-		      			<td>
-	      					<fmt:parseDate value="${board.regdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
-	      					<fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" />
-		      			</td>
-		      			<td>${board.visited }</td>
-		      		</tr>
-		      	</c:forEach>
 		      	<tbody>
 		      	<c:forEach items="${boardList }" var="board" varStatus="status">
 		      		<tr>
@@ -58,14 +47,16 @@
 		      	</c:forEach>	
 		      	</tbody>
 		      </table>
-			      	    <%-- <c:if test='${sid eq "admin"}'>  --%> 
+			      	   
 		      	<div class="button-group">
-				  <a class="button" href="${path1 }/board/insert.do">글쓰기</a>
+				  <a class="button" href="${path2 }/board/insert.do">글쓰기</a>
 				</div>
-			<%-- </c:if> --%>
+			
 	      </div>
 
 	    </div>
-
+	
+    <footer id="footer" class="footer-nav row expanded collapse">
+	</footer>
 </body>
 </html>
