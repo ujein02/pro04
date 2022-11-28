@@ -22,7 +22,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@GetMapping("list.do")
+	@GetMapping("list.do")	//board/list.do
 	public String getBoardList(Model model) throws Exception{
 		List<BoardDTO> boardList = boardService.boardList();
 		model.addAttribute("boarList", boardList);

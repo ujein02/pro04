@@ -21,7 +21,7 @@ public class FreeServiceImpl implements FreeService {
 
 	@Override
 	public FreeDTO freeDetail(int fno) throws Exception {
-		return freeDAO.getFree(fno);
+		return freeDAO.freeDetail(fno);
 	}
 
 	@Override
@@ -29,6 +29,19 @@ public class FreeServiceImpl implements FreeService {
 		freeDAO.freeInsert(dto);
 		
 	}
+
+	@Override
+	public void freeDelete(int fno) throws Exception {
+		freeDAO.freeDelete(fno);
+		
+	}
+
+	@Override
+	public void freeEdit(FreeDTO dto) throws Exception {
+		freeDAO.freeEdit(dto);
+		
+	}
+	
 	
 	
 

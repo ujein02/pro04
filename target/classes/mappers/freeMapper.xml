@@ -13,6 +13,15 @@
 	</select>
 	<!-- 글 작성하기 -->
 	<insert id="freeInsert">
-		insert into free values ((select nvl(max(fno), 0)+1 from free), #{title}, #{content}, #{nickname}, sysdate, 0, 0)
+		insert into free values ((select nvl(max(fno), 0)+1 from free), #{title}, #{content},  sysdate, 0, #{id}, 0)
 	</insert>
+	<delete id="freeDelete">
+		delete from free where fno=#{fno}
+	</delete>
+	<update id="freeEdit">
+		update free set title=#{title}, content=#{content} where fno=#{fno}
+	</update>
+	<update id="visitCount">
+		update free set visited=visited+1 where fno=#{fno}
+	</update>
 </mapper>

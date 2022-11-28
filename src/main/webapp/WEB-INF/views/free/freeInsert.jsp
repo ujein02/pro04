@@ -16,36 +16,39 @@
     <script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
+<header id="header">
+	<jsp:include page="../include/header.jsp"/>
+</header>
 <div class="container">
       <h2>자유게시판 글쓰기</h2>
       <hr>
       <form action="${path1 }/free/insert.do" method="post">
 	      <table id="table1">
 	      	<tbody>
-	      		<tr>
-	      			<th style="backgound-color:#dcdcdc">제목</th>
-	      			<td>
-	      				<input type="text" class="input" maxlength="120" name="title" id="title" placeholder="제목 입력" required />
-	      			</td>
-	      		</tr>
-	      		<tr>
-	      			<th style="backgound-color:#dcdcdc">내용</th>
-	      			<td>
-		      			<textarea rows="8" cols="150" name="content" id="content" required></textarea>
-		      			<script>
-		      			CKEDITOR.replace('content', {filebrowserUploadUrl:'/free/imageUpload.do'});
-		      			</script>
-	      			</td>
-	      		</tr>
-	      	</tbody>
+			      		<tr>
+			      			<th style="background-color:#dcdcdc">글 제목</th>
+			      			<td>
+			      				<input type="text" name="title" id="title" placeholder="제목 입력" maxlength="98" required>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<th style="background-color:#dcdcdc">글 내용</th>
+			      			<td>
+			      				<textarea name="content" id="content" placeholder="내용 입력" rows="8" cols="100" maxlength="800" required></textarea>
+			      				<script>
+			      				CKEDITOR.replace('content',	{filebrowserUploadUrl:'/free/imageUpload.do'});
+			      				</script>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td colspan="2">
+			      				<input type="submit" class="submit success button" value="글 등록" >
+			      				<a class="button" href="${path1 }/free/list.do">글 목록</a>
+			      			</td>
+			      		</tr>
+			      	</tbody>
 	      </table>
-	      <div class="primary button-group">
-			  <button type="submit" class="button">등록</button>
-			  <button type="reset" class="button">취소</button>
-			  <a href="${path1 }/free/list.do" class="button">목록</a>
-			</div>
-	     </form>
+	      </form>
     </div>
 	
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -53,5 +56,9 @@
     <script>
       $(document).foundation();
     </script>
+        <footer id="footer" class="footer-nav row expanded collapse">
+    	<!-- 푸터 부분 인클루드 -->
+    	<jsp:include page="../include/footer.jsp"></jsp:include>
+    </footer>
 </body>
 </html>

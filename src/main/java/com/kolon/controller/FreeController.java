@@ -43,7 +43,7 @@ public class FreeController {
 		return "free/freeList";
 	}
 	
-	@GetMapping("detail.do")	//board/detail.do?seq=1
+	@GetMapping("detail.do")	//free/detail.do?fno=1
 	public String getFreeDetail(HttpServletRequest request, Model model) throws Exception {
 		int fno= Integer.parseInt(request.getParameter("fno"));
 		FreeDTO dto = freeService.freeDetail(fno);
@@ -65,6 +65,36 @@ public class FreeController {
 		
 		return "redirect:list.do";
 	}
+	
+	@GetMapping("delete.do")
+	public String freeDelete(HttpServletRequest request, Model model) throws Exception {
+		int fno = Integer.parseInt(request.getParameter("fno"));
+		freeService.freeDelete(fno);
+		
+		return "redirect:list.do";
+	}
+	
+	@GetMapping("edit.do")
+	public String editForm(HttpServletRequest request, Model model) throws Exception {
+		int fno = Integer.parseInt(request.getParameter("fno"));
+		FreeDTO dto = freeService.freeDetail(fno);
+		model.addAttribute("dto", dto);
+		return "free/freeEdit";
+	}
+	
+	@PostMapping("edit.do")
+	public String freeEdit(HttpServletRequest request, Model model) throws Exception {
+		int fno = Integer.parseInt(request.getParameter("fno"));
+		
+		FreeDTO dto = new FreeDTO();
+		dto.setFno(fno);
+		dto.setTitle(request.getParameter("title"));
+		dto.setContent(request.getParameter("content"));
+		freeService.freeEdit(dto);
+		
+		return "redirect:list.do";
+	}
+	
 	
 	//ckeditor를 이용한 이미지 업로드
     @RequestMapping(value="imageUpload.do", method = RequestMethod.POST)
@@ -115,9 +145,9 @@ public class FreeController {
     		e.printStackTrace();
     	} finally {
     		try {
-    		if(out != null) { out.close(); }
-    		if(printWriter != null) { printWriter.close(); }
-    	} catch(IOException e) { e.printStackTrace(); }
+	    		if(out != null) { out.close(); }
+	    		if(printWriter != null) { printWriter.close(); }
+    		} catch(IOException e) { e.printStackTrace(); }
     	}
     	return;
     }
